@@ -1,4 +1,124 @@
 ## CHANGELOG:
+* v7.1 - Added installer and support for Debian, Parrot and Ubuntu OS (install_debian.sh)
+* v7.0 - Added "webscan" mode for automated Burpsuite 2.x and Arachni web application scans only
+* v7.0 - Added Slack API notifications (Disabled by default..check ~/.sniper.conf)
+* v7.0 - Added new command switch to add daily, weekly or monthly sniper scheduled scans... check README
+* v7.0 - Added scheduled scan tasks command switch (Needs additional configuration to setup... check README)
+* v7.0 - Added Axis2 authenticated deployer MSF exploit
+* v7.0 - Added Axis2 login brute force module
+* v7.0 - Added subjack tool to check for subdomain hijacking
+* v7.0 - Added sorted IP lists under $LOOT_DIR/ips/ips-all-sorted.txt
+* v7.0 - Added subnet retrieval for all 'recon' mode scans under $LOOT_DIR/nmap/subnets-$TARGET.txt
+* v7.0 - Added Webscreenshot.py and disabled cutycapt from default config
+* v7.0 - Added Gobuster (Disabled by default..check ~/.sniper.conf)
+* v7.0 - Fixed issue with SubOver not working due to bad path
+* v7.0 - Fixed issue with flyover mode running 2x 
+* v6.3 - Added Drupal RESET Unserialize RCE CVE-2019-6340
+* v6.2 - Added Glassfish Admin traversal MSF exploit 
+* v6.2 - Added ElasticSearch Java Injection MSF RCE exploit
+* v6.2 - Added WebTech web fingerprinting tool
+* v6.2 - Added censys subdomain retrieval and API key config
+* v6.2 - Added project sonar sub-domain retrieval
+* v6.2 - Added command switch to remove workspace (-d)
+* v6.2 - Added command switch to remove host (-dh)
+* v6.2 - Added DockerFile to run Sn1per in Docker (CC. Hariom Vashisth <hariom.devops@gmail.com>)
+* v6.2 - Changed option to automatically import all NMap XML's into Metasploit's DB
+* v6.2 - Changed option to automatically load Sn1per Professional's report when scans complete
+* v6.2 - Added config option to enable/disable subdomain hijacking checks in sniper.conf
+* v6.2 - Fixed issue with sniper --list command having invalid reference
+* v6.2 - Fixed issue with theharvester not running
+* v6.1 - Added automated web scanning via Burpsuite Pro 2.x API for all 'web' mode scans
+* v6.1 - Added Waybackmachine URL retrieval to all web scans
+* v6.1 - Converted all exploits to Metasploit
+* v6.1 - Added configuration options to set LHOST/LPORT for all Metasploit exploits in sniper.conf
+* v6.1 - Added improved web brute forcing dictionaries for all scan modes
+* v6.1 - Added individual logging for all tools under the loot directory
+* v6.1 - Added new sniper.conf options to enabled/disable all plugins and change settings per user
+* v6.1 - Fixed issue with CMSMap install/usage
+* v6.1 - Fixed issue with WPScan gem dependency missing (public_suffix)
+* v6.1 - Fixed timeout setting in cutycapt
+* v6.1 - Fixed issue with theharvester not running correctly
+* v6.1 - Fixed issue with Amass not running due to invalid command line options in latest release
+* v6.1 - Fixed issue with Sn1per Professional notepad.html missing
+* v6.1 - Cleaned up plugins and install dependencies list
+* v6.0 - Improved scan options for discover mode scans
+* v6.0 - Fixed issue with pip3 dependency package missing
+* v6.0 - Removed iceweasel from install.sh to fix apt error
+* v5.9 - Fixed issue with auto updates not notifying users of updates
+* v5.8 - Fixed issue with subfinder not working due to lack of wordlist switch
+* v5.8 - Fixed missing osint directory/file paths
+* v5.7 - Added libSSH auth bypass scanner CVE-2018-10933
+* v5.7 - Added HTTP PUT method RCE MSF exploit
+* v5.7 - Added sniper.conf scan configuration file to customize sniper environments by user
+* v5.7 - Added modular scan mode source files
+* v5.7 - Updated wordlists for improved performance and results
+* v5.7 - Fixed issue with DNScan using an invalid path
+* v5.6 - Changed automatic report generation to "ON" for Sn1per Pro users
+* v5.5 - Added new multi-threaded high speed "flyover" mode added
+* v5.5 - Added new scan status mode via (sniper --status) command
+* v5.5 - Apache Struts CVE-2018-11776 RCE exploit
+* v5.5 - Added Android Insecure ADB RCE auto exploit
+* v5.5 - Added Apache Tomcat CVE-2017-12617 RCE exploit
+* v5.5 - Added Oracle WebLogic WLS-WSAT Component Deserialisation RCE CVE-2017-10271 MSF exploit
+* v5.5 - Added BlackWidow web application scanner with INJECTX fuzzer
+* v5.5 - Added CVE-2018-15473 SSH user enumeration script
+* v5.5 - Minor wordlist updates for web file brute forcing
+* v5.4 - Updated Golang in install.sh
+* v5.3 - Updated AMass repo in install.sh
+* v5.3 - Removed CloudFail
+* v5.3 - Fixed issue with subfinder missing brute force list
+* v5.3 - Fixed issue with invalid dnsscan reference
+* v5.2 - Added SubOver subdomain takeover scanner
+* v5.2 - Added Subfinder subdomain enumeration tool
+* v5.2 - Added Amass subdomain enumeration tool
+* v5.2 - Added configurable modules/plugins to sniper script
+* v5.2 - Added MS17-010 SMB Etternal Blue MSF exploit
+* v5.2 - Added MSF Postgresql login scanner
+* v5.2 - Added passive web spider
+* v5.2 - Added WebDav metasploit aux modules
+* v5.2 - Added NetBIOS NMap/MSF enumeration
+* v5.2 - Added SMB MSF enumeration
+* v5.2 - Added NSF MSF enumeration
+* v5.2 - Added SSH MSF enumeration
+* v5.2 - Added BadBlue Passthru MSF exploit
+* v5.2 - Added SMB GPP MSF aux module
+* v5.2 - Added Intel AMT MSF scanner
+* v5.2 - Added MySQL MSF scanner
+* v5.2 - Added MS03-026 DCOM RCE MSF exploit
+* v5.2 - Added VNC no auth MSF scanner
+* v5.2 - Added FTP MSF version scanner
+* v5.2 - Added FTP anonymous access MSF scanner
+* v5.2 - Added MS12-020 RDP MSF scanner
+* v5.2 - Added MS10-061 Spoolss MSF exploit
+* v5.2 - Added MS15-034 Sys Memory Dump MSF exploit
+* v5.2 - Added MS06-040 Netapi MSF exploit
+* v5.2 - Added MS05-039 PNP MSF exploit
+* v5.2 - Added MS12-020 Max Channels RDP scanner
+* v5.2 - Added JBoss status MSF scanner
+* v5.2 - Added Apache Struts 2 REST Plugin XStream RCE check
+* v5.2 - Added Apache Tomcat UTF8 Traversal MSF exploit
+* v5.2 - Added Apache OPTIONS Bleed MSF exploit
+* v5.2 - Added HP ILO Auth Bypass MSF exploit
+* v5.2 - Added Jooma Comfields SQL injection MSF exploit
+* v5.1 - Added dnscan to install.sh and updated sniper references which were broken
+* v5.1 - Changed default brute force list for dnscan to improve performance of scans
+* v5.1 - Removed CloudHunter and SubOver references (CC. 爱上平顶山)
+* v5.0 - Added Sn1per Pro reporting interface (see https://xerosecurity.com for more details)
+* v5.0 - Added GPON Router RCE auto exploit 
+* v5.0 - Added Cloudapp.net Azure subdomain takeover check
+* v5.0 - Added Cisco ASA Directory Traversal auto exploit (CVE-2018-0296)
+* v5.0 - Added Wig Web Information Gatherer
+* v5.0 - Added Dirsearch with custom dirsearch wordlists (quick, normal, full)
+* v5.0 - Fixed bug in installer/upgrade which copied the local dir contents to the install dir
+* v5.0 - Improved scan performance while taking web screenshots 
+* v5.0 - Fixed repo issue with Slurp (Shoutz to @ifly53e)
+* v5.0 - Fixed issues with wrong ports listed in port scans (Shoutz to @ifly53e)
+* v5.0 - Minor code fixes and typos corrected (Shoutz to @ifly53e)
+* v5.0 - Updated "discover" mode scans for improved performance
+* v4.5 - Added Apache Struts 2 CVE-2017-9805 and CVE-2017-5638 detection
+* v4.5 - Added dirsearch web/file brute forcing
+* v4.5 - Added smart file/directory brute forcing to all scan modes.
+* v4.5 - Added subdomain brute force scan option to Sublist3r scan.
 * v4.4 - Fixed issue with sniper nuke and airstrike modes not running.
 * v4.4 - Added improved SNMP checks via NMap/Metasploit.
 * v4.4 - Resolved dependency issue for nfs-common package.
