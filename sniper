@@ -1,38 +1,25 @@
 #!/bin/bash
-# + -- --=[Sn1per by 1N3@CrowdShield
-# + -- --=[http://crowdshield.com
-#
+# + -- --=[Sn1per Community Edition by @xer0dayz
+# + -- --=[https://xerosecurity.com
+# 
 
-VER="4.4"
-BROWSER="firefox" # SET DEFAULT BROWSER
+VER="7.0"
 INSTALL_DIR="/usr/share/sniper"
-PLUGINS_DIR="/usr/share/sniper/plugins"
-CMSMAP="/usr/share/sniper/plugins/CMSmap/cmsmap.py"
-SAMRDUMP="$INSTALL_DIR/bin/samrdump.py"
-DNSDICT6="$INSTALL_DIR/bin/dnsdict6"
-INURLBR="$INSTALL_DIR/bin/inurlbr.php"
-USER_FILE="$PLUGIN_DIR/BruteX/wordlists/simple-users.txt"
-PASS_FILE="$PLUGIN_DIR/BruteX/wordlists/password.lst"
-DNS_FILE="$PLUGIN_DIR/BruteX/wordlists/namelist.txt"
-SUPER_MICRO_SCAN="/usr/share/sniper/plugins/SuperMicro-Password-Scanner/supermicro_scan.sh"
-DEFAULT_PORTS="1,7,9,13,19,21-23,25,37,42,49,53,67,68,69,79-81,85,88,105,109-111,113,123,135,137-139,143,161,162,179,222,264,384,389,402,407,443-446,465,500,502,512-515,523-524,540,548,554,587,617,623,631,655,689,705,771,783,831,873,888,902,910,912,921,993,995,998-1000,1024,1030,1035,1090,1098-1103,1128-1129,1158,1199,1211,1220,1234,1241,1300,1311,1352,1433-1435,1440,1471,1494,1521,1530,1533,1581-1582,1604,1720,1723,1755,1811,1900,2000-2001,2049,2067,2100,2103,2121,2199,2207,2222,2323,2362,2380-2381,2525,2533,2598,2638,2809,2947,2967,3000,3037,3050,3057,3128,3200,3217,3273,3299,3306,3310,3333,3389,3460,3465,3500,3628,3632,3690,3780,3790,3817,3900,4000,4322,4433,4444-4445,4659,4672,4679,4800,4848,5000,5009,5038,5040,5051,5060-5061,5093,5168,5227,5247,5250,5351,5353,5355,5400,5405,5432-5433,5466,5498,5520-5521,5554-5555,5560,5580,5631-5632,5666,5800,5814,5900-5910,5920,5984-5986,5999-6000,6050,6060,6070,6080,6082,6101,6106,6112,6161,6262,6379,6405,6502-6504,6542,6660-6661,6667,6789,6905,6988,6996,7000-7001,7021,7071,7080,7144,7181,7210,7272,7414,7426,7443,7510,7547,7579-7580,7700,7770,7777-7778,7787,7800-7801,7878-7879,7890,7902,8000-8001,8008,8014,8020,8023,8028,8030,8050-8051,8080-8082,8085-8088,8090-8091,8095,8101,8161,8180,8205,8222,8300,8303,8333,8400,8443-8445,8503,8642,8686,8701,8787,8800,8812,8834,8880,8888-8890,8899,8901-8903,8980,8999-9005,9010,9050,9080-9081,9084,9090,9099-9100,9111,9152,9200,9256,9300,9390-9391,9495,9500,9711,9788,9809-9815,9855,9875,9910,9991,9999-10001,10008,10050-10051,10080,10098-10099,10162,10202-10203,10443,10616,10628,11000-11001,11099,11211,11234,11333,11460,12000,12174,12203,12221,12345,12397,12401,13013,13364,13500,13838,14000,14330,15000-15001,15200,16000,16102,16992,17185,17200,18881,18980,19300,19810,20000,20010,20031,20034,20101,20111,20171,20222,22222,23423,23472,23791,23943,25000,25025,26000,26122,26256,27000,27015,27017,27888,27960,28222,28784,30000,30718,31001,31099,32022,32764,32913,33000,34205,34443,37718,37777,38080,38292,40007,41025,41080,41523-41524,44334,44818,45230,46823-46824,47001-47002,48080,48899,49152,50000-50004,50013,50050,50500-50504,52302,52869,53413,55553,57772,62078,62514,65535,U:53,U:67,U:68,U:69,U:88,U:161,U:162,U:137,U:138,U:139,U:389,U:520,U:2049"
-DEFAULT_TCP_PORTS="1,7,9,13,19,21-23,25,37,42,49,53,69,79-81,85,88,105,109-111,113,123,135,137-139,143,161,162,179,222,264,384,389,402,407,443-446,465,500,502,512-515,523-524,540,548,554,587,617,623,631,655,689,705,771,783,831,873,888,902,910,912,921,993,995,998-1000,1024,1030,1035,1090,1098-1103,1128-1129,1158,1199,1211,1220,1234,1241,1300,1311,1352,1433-1435,1440,1471,1494,1521,1530,1533,1581-1582,1604,1720,1723,1755,1811,1900,2000-2001,2049,2067,2100,2103,2121,2199,2207,2222,2323,2362,2380-2381,2525,2533,2598,2638,2809,2947,2967,3000,3037,3050,3057,3128,3200,3217,3273,3299,3306,3310,3333,3389,3460,3465,3500,3628,3632,3690,3780,3790,3817,3900,4000,4322,4433,4444-4445,4659,4672,4679,4800,4848,5000,5009,5038,5040,5051,5060-5061,5093,5168,5227,5247,5250,5351,5353,5355,5400,5405,5432-5433,5466,5498,5520-5521,5554-5555,5560,5580,5631-5632,5666,5800,5814,5900-5910,5920,5984-5986,5999-6000,6050,6060,6070,6080,6082,6101,6106,6112,6161,6262,6379,6405,6502-6504,6542,6660-6661,6667,6789,6905,6988,6996,7000-7001,7021,7071,7080,7144,7181,7210,7272,7414,7426,7443,7510,7547,7579-7580,7700,7770,7777-7778,7787,7800-7801,7878-7879,7890,7902,8000-8001,8008,8014,8020,8023,8028,8030,8050-8051,8080-8082,8085-8088,8090-8091,8095,8101,8161,8180,8205,8222,8300,8303,8333,8400,8443-8445,8503,8642,8686,8701,8787,8800,8812,8834,8880,8888-8890,8899,8901-8903,8980,8999-9005,9010,9050,9080-9081,9084,9090,9099-9100,9111,9152,9200,9256,9300,9390-9391,9495,9500,9711,9788,9809-9815,9855,9875,9910,9991,9999-10001,10008,10050-10051,10080,10098-10099,10162,10202-10203,10443,10616,10628,11000-11001,11099,11211,11234,11333,11460,12000,12174,12203,12221,12345,12397,12401,13013,13364,13500,13838,14000,14330,15000-15001,15200,16000,16102,16992,17185,17200,18881,18980,19300,19810,20000,20010,20031,20034,20101,20111,20171,20222,22222,23423,23472,23791,23943,25000,25025,26000,26122,26256,27000,27015,27017,27888,27960,28222,28784,30000,30718,31001,31099,32022,32764,32913,33000,34205,34443,37718,37777,38080,38292,40007,41025,41080,41523-41524,44334,44818,45230,46823-46824,47001-47002,48080,48899,49152,50000-50004,50013,50050,50500-50504,52302,52869,53413,55553,57772,62078,62514,65535"
-DEFAULT_UDP_PORTS="53,67,68,69,88,123,161,162,137,138,139,389,520,2049"
-THREADS="30"
-OKBLUE='\033[94m'
-OKRED='\033[91m'
-OKGREEN='\033[92m'
-OKORANGE='\033[93m'
-RESET='\e[0m'
-REGEX='^[0-9]+$'
+LOOT_DIR="$INSTALL_DIR/loot/$TARGET"
+SNIPER_PRO=$INSTALL_DIR/pro.sh
 
-# DEFAULT SETTINGS
-AUTOBRUTE="0"
-FULLNMAPSCAN="0"
-OSINT="0"
-ENABLE_AUTO_UPDATES="1"
-REPORT="1"
-LOOT="1"
+# INIT POSTGRESQL
+service postgresql start
+
+# LOAD SNIPER CONFIGURATION FILE
+if [ -f ~/.sniper.conf ]; then
+  source ~/.sniper.conf
+  echo -e "$OKBLUE[*] Loaded configuration file from ~/.sniper.conf [$RESET${OKGREEN}OK${RESET}$OKBLUE]$RESET"
+else
+  cp $INSTALL_DIR/sniper.conf ~/.sniper.conf 2> /dev/null
+  source ~/.sniper.conf
+  echo -e "$OKBLUE[*] Loaded configuration file from ~/.sniper.conf [$RESET${OKGREEN}OK${RESET}$OKBLUE]$RESET"
+fi
 
 DISTRO=$(cat /etc/*-release | grep DISTRIB_ID= | cut -d'=' -f2)
 
@@ -44,8 +31,8 @@ function help {
   echo -e "$OKRED /____/_/ /_/___/ .___/\___/_/     $RESET"
   echo -e "$OKRED               /_/                 $RESET"
   echo ""
-  echo -e "$OKORANGE + -- --=[http://crowdshield.com$RESET"
-  echo -e "$OKORANGE + -- --=[sniper v$VER by 1N3$RESET"
+  echo -e "$OKORANGE + -- --=[https://xerosecurity.com$RESET"
+  echo -e "$OKORANGE + -- --=[sniper v$VER by @xer0dayz$RESET"
   echo ""
   echo ' [*] NORMAL MODE'
   echo ' sniper -t|--target <TARGET>'
@@ -77,6 +64,9 @@ function help {
   echo ' [*] HTTPS WEB PORT MODE'
   echo ' sniper -t|--target <TARGET> -m|--mode webporthttps -p|--port <port>'
   echo ""
+  echo ' [*] HTTP WEBSCAN MODE'
+  echo ' sniper -t|--target <TARGET> -m|--mode webscan '
+  echo ""
   echo ' [*] ENABLE BRUTEFORCE'
   echo ' sniper -t|--target <TARGET> -b|--bruteforce'
   echo ""
@@ -86,11 +76,29 @@ function help {
   echo ' [*] NUKE MODE WITH TARGET LIST, BRUTEFORCE ENABLED, FULLPORTSCAN ENABLED, OSINT ENABLED, RECON ENABLED, WORKSPACE & LOOT ENABLED'
   echo ' sniper -f--file /full/path/to/targets.txt -m|--mode nuke -w|--workspace <WORKSPACE_ALIAS>'
   echo ""
-  echo ' [*] ENABLE LOOT IMPORTING INTO METASPLOIT'
-  echo ' sniper -t|--target <TARGET>'
+  echo ' [*] LIST WORKSPACES'
+  echo ' sniper --list'
+  echo ""
+  echo ' [*] DELETE WORKSPACE'
+  echo ' sniper -w <WORKSPACE_ALIAS> -d'
+  echo ""
+  echo ' [*] DELETE HOST FROM WORKSPACE'
+  echo ' sniper -w <WORKSPACE_ALIAS> -t <TARGET> -dh'
+  echo ""
+  echo ' [*] GET SNIPER SCAN STATUS'
+  echo ' sniper --status'
   echo ""
   echo ' [*] LOOT REIMPORT FUNCTION'
   echo ' sniper -w <WORKSPACE_ALIAS> --reimport'
+  echo ""
+  echo ' [*] LOOT REIMPORTALL FUNCTION'
+  echo ' sniper -w <WORKSPACE_ALIAS> --reimportall'
+  echo ""
+  echo ' [*] LOOT REIMPORT FUNCTION'
+  echo ' sniper -w <WORKSPACE_ALIAS> --reload'
+  echo ""
+  echo ' [*] SCHEDULED SCANS'
+  echo ' sniper -w <WORKSPACE_ALIAS> -s daily|weekly|monthly'
   echo ""
   echo ' [*] UPDATE SNIPER'
   echo ' sniper -u|--update'
@@ -107,9 +115,13 @@ function logo {
   echo -e "$OKRED /____/_/ /_/___/ .___/\___/_/     $RESET"
   echo -e "$OKRED               /_/                 $RESET"
   echo ""
-  echo -e "$OKORANGE + -- --=[http://crowdshield.com$RESET"
-  echo -e "$OKORANGE + -- --=[sniper v$VER by 1N3$RESET"
+  echo -e "$OKORANGE + -- --=[https://xerosecurity.com$RESET"
+  echo -e "$OKORANGE + -- --=[sniper v$VER by @xer0dayz$RESET"
   echo ""
+}
+
+function sniper_status {
+  watch -n 1 -c 'ps -ef | egrep "hydra|ruby|python|dirsearch|amass|nmap|metasploit|curl|wget|nikto" && echo "NETWORK CONNECTIONS..." && netstat -an | egrep "TIME_WAIT|EST"'
 }
 
 function check_online {
@@ -128,9 +140,9 @@ function check_online {
 
 function check_update {
   if [ "$ENABLE_AUTO_UPDATES" == "1" ] && [ "$ONLINE" == "1" ]; then
-    LATEST_VER=$(curl --connect-timeout 3 -s https://api.github.com/repos/1N3/Sn1per/tags | grep -Po '"name":.*?[^\\]",'| head -1 | cut -c11-13)
+    LATEST_VER=$(curl --connect-timeout 5 -s https://api.github.com/repos/1N3/Sn1per/tags | grep -Po '"name":.*?[^\\]",'| head -1 | cut -c11-13)
     if [ "$LATEST_VER" != "$VER" ]; then
-      echo -e "$OKBLUE[$RESET${OKRED}i${RESET}$OKBLUE] sniper v$LATEST_VER is available to download... To update, type$OKRED \"sniper update\" $RESET"
+      echo -e "$OKBLUE[$RESET${OKRED}i${RESET}$OKBLUE] sniper v$LATEST_VER is available to download... To update, type$OKRED \"sniper -u\" $RESET"
     fi
   fi
 }
@@ -138,17 +150,19 @@ function check_update {
 function update {
   logo
   echo -e "$OKBLUE[*] Checking for updates...[$RESET${OKGREEN}OK${RESET}$OKBLUE]$RESET"
-  if [ "$ONLINE" = "0" ]; then
+  if [ "$ONLINE" == "0" ]; then
     echo "You will need to download the latest release manually at https://github.com/1N3/Sn1per/"
   else
-    LATEST_VER=$(curl --connect-timeout 3 -s https://api.github.com/repos/1N3/Sn1per/tags | grep -Po '"name":.*?[^\\]",'| head -1 | cut -c11-13)
+    LATEST_VER=$(curl --connect-timeout 5 -s https://api.github.com/repos/1N3/Sn1per/tags | grep -Po '"name":.*?[^\\]",'| head -1 | cut -c11-13)
     if [ "$LATEST_VER" != "$VER" ]; then
       echo -e "$OKBLUE[$RESET${OKRED}i${RESET}$OKBLUE] Sn1per $LATEST_VER is available to download...Do you want to update? (y or n)$RESET"
       read ans
       if [ "$ans" = "y" ]; then
         rm -Rf /tmp/Sn1per/ 2>/dev/null
         git clone https://github.com/1N3/Sn1per /tmp/Sn1per/
-        bash /tmp/Sn1per/install.sh
+        cd /tmp/Sn1per/
+        chmod +rx install.sh
+        bash install.sh
         rm -Rf /tmp/Sn1per/ 2>/dev/null
         exit
       fi
@@ -212,6 +226,14 @@ case $key in
     REIMPORT="1"
     shift # past argument
     ;;
+    -ria|--reimportall)
+    REIMPORT_ALL="1"
+    shift # past argument
+    ;;
+    -rl|--reload)
+    RELOAD="1"
+    shift # past argument
+    ;;
     -n|--noreport)
     REPORT="0"
     shift # past argument
@@ -226,6 +248,62 @@ case $key in
     WORKSPACE_DIR="$INSTALL_DIR/loot/workspace/$WORKSPACE"
     shift # past argument
     shift # past argument
+    ;;
+    -s|--schedule)
+    if [ -z "$WORKSPACE" ]; then
+      echo "You need to set a workspace via the -w switch to schedule a scan task."
+      exit
+    fi
+    SCHEDULE_ARG="$2"
+    if [ "$SCHEDULE_ARG" = "daily" ] || [ "$SCHEDULE_ARG" = "weekly" ] || [ "$SCHEDULE_ARG" = "monthly" ]; then
+      SCHEDULE_TASK="$WORKSPACE_DIR/scans/scheduled/$SCHEDULE_ARG.sh"
+      vim $SCHEDULE_TASK
+      cat $WORKSPACE_DIR/scans/scheduled/*.sh 2> /dev/null
+      exit
+    else
+      echo "You need to specify either daily, weekly or monthly for the scheduled scan argument."
+      exit
+    fi
+    shift # past argument
+    shift # past argument
+    ;;
+    -d|--delete)
+    logo
+    echo "Are you sure you want to remove the following workspace? (Hit Ctrl+C to exit): /usr/share/sniper/loot/workspace/$WORKSPACE/"
+    read ANS
+    rm -Rf /usr/share/sniper/loot/workspace/$WORKSPACE/
+    echo "Workspace /usr/share/sniper/loot/workspace/$WORKSPACE/ was removed."
+    exit
+    shift # past argument
+    ;;
+    -dh|--delete-host)
+    echo "Removing $TARGET from $WORKSPACE"
+    sed -i "/$TARGET/d" $WORKSPACE_DIR/domains/targets-all-sorted.txt $WORKSPACE_DIR/domains/domains-all-sorted.txt $WORKSPACE_DIR/domains/targets.txt 2> /dev/null
+    rm -f $WORKSPACE_DIR/screenshots/$TARGET*.jpg 2> /dev/null
+    sniper --reimport -w $WORKSPACE 
+    exit
+    shift # past argument
+    ;;
+    --list)
+    logo
+    ls -l $INSTALL_DIR/loot/workspace/
+    echo ""
+    echo "cd /usr/share/sniper/loot/workspace/"
+    WORKSPACE_REPORT=$LOOT_DIR/sniper-report.html
+    if [ -f $WORKSPACE_REPORT ]; then
+      echo -e "$OKORANGE + -- --=[Loading Sn1per Professional...$RESET"
+      $BROWSER $INSTALL_DIR/loot/workspace/sniper-report.html 2> /dev/null > /dev/null &
+    else
+      echo -e "$OKORANGE + -- --=[Loading workspaces...$RESET"
+      $BROWSER $INSTALL_DIR/loot/workspace/ 2> /dev/null > /dev/null &
+    fi
+    exit
+    shift
+    ;;
+    -s|--status)
+    sniper_status
+    exit
+    shift
     ;;
     -u|--update)
     UPDATE="1"
@@ -249,8 +327,6 @@ if [ -z "$TARGET" ] && [ -z "$WORKSPACE" ]; then
   exit
 fi
 
-LOOT_DIR="/usr/share/sniper/loot/$TARGET"
-
 cd $INSTALL_DIR
 
 function init {
@@ -258,18 +334,44 @@ function init {
     LOOT_DIR=$WORKSPACE_DIR
   fi
   echo -e "$OKBLUE[*] Saving loot to $LOOT_DIR [$RESET${OKGREEN}OK${RESET}$OKBLUE]$RESET"
-  mkdir -p $LOOT_DIR 2> /dev/null
+  mkdir -p $LOOT_DIR 2> /dev/nul
   mkdir $LOOT_DIR/domains 2> /dev/null
+  mkdir $LOOT_DIR/ips 2> /dev/null
   mkdir $LOOT_DIR/screenshots 2> /dev/null
   mkdir $LOOT_DIR/nmap 2> /dev/null
   mkdir $LOOT_DIR/reports 2> /dev/null
   mkdir $LOOT_DIR/output 2> /dev/null
-  mkdir $LOOT_DIR/burpsuite 2> /dev/null
+  mkdir $LOOT_DIR/osint 2> /dev/null
+  mkdir $LOOT_DIR/credentials 2> /dev/null
   mkdir $LOOT_DIR/web 2> /dev/null
   mkdir $LOOT_DIR/notes 2> /dev/null
+  mkdir -p $LOOT_DIR/scans/scheduled/ 2> /dev/null
+  touch $LOOT_DIR/scans/scheduled/daily.sh 2> /dev/null
+  touch $LOOT_DIR/scans/scheduled/weekly.sh 2> /dev/null
+  touch $LOOT_DIR/scans/scheduled/monthly.sh 2> /dev/null
   TARGET="$(echo $TARGET | sed 's/https:\/\///g' | sed 's/http:\/\///g')"
   /etc/init.d/metasploit start 2> /dev/null > /dev/null 2>&1 &
   msfdb start 2> /dev/null > /dev/null
+
+  if [ "$AUTOBRUTE" == "1" ]; then
+    echo "$TARGET autobrute `date +"%Y-%m-%d %H:%M"`" 2> /dev/null >> $LOOT_DIR/scans/tasks.txt
+    touch $LOOT_DIR/scans/$TARGET-autobrute.txt 2> /dev/null 
+  fi
+
+  if [ "$FULLNMAPSCAN" == "1" ]; then
+    echo "$TARGET fullnmapscan `date +"%Y-%m-%d %H:%M"`" 2> /dev/null >> $LOOT_DIR/scans/tasks.txt
+    touch $LOOT_DIR/scans/$TARGET-fullnmapscan.txt 2> /dev/null 
+  fi
+
+  if [ "$OSINT" == "1" ]; then
+    echo "$TARGET osint `date +"%Y-%m-%d %H:%M"`" 2> /dev/null >> $LOOT_DIR/scans/tasks.txt
+    touch $LOOT_DIR/scans/$TARGET-osint.txt 2> /dev/null 
+  fi
+
+  if [ "$RECON" == "1" ]; then
+    echo "$TARGET recon `date +"%Y-%m-%d %H:%M"`" 2> /dev/null >> $LOOT_DIR/scans/tasks.txt
+    touch $LOOT_DIR/scans/$TARGET-recon.txt 2> /dev/null 
+  fi
 }
 
 function loot {
@@ -284,27 +386,38 @@ function loot {
     LOOT_DIR=$WORKSPACE_DIR
   fi
 
+  echo -e "$OKBLUE[*] Opening loot directory $LOOT_DIR [$RESET${OKGREEN}OK${RESET}$OKBLUE]$RESET"
+
   cd $LOOT_DIR
 
-  echo -e "$OKORANGE + -- --=[Starting Metasploit service...$RESET"
-  /etc/init.d/metasploit start 2> /dev/null > /dev/null
-  echo -e "$OKORANGE + -- --=[Importing NMap XML files into Metasploit...$RESET"
-  msfconsole -x "workspace -a $WORKSPACE; workspace $WORKSPACE; db_import $LOOT_DIR/nmap/nmap*.xml; hosts; services; exit;" > $LOOT_DIR/notes/msf-$WORKSPACE.txt
-  echo -e "$OKORANGE + -- --=[Current reports...$RESET"
-  ls -lh $LOOT_DIR/output/*.txt 2> /dev/null > /dev/null
+  if [ "$METASPLOIT_IMPORT" == "1" ]; then
+    echo -e "$OKORANGE + -- --=[Starting Metasploit service...$RESET"
+    /etc/init.d/metasploit start 2> /dev/null > /dev/null
+    msfdb start
+    echo -e "$OKORANGE + -- --=[Importing NMap XML files into Metasploit...$RESET"
+    msfconsole -x "workspace -a $WORKSPACE; workspace $WORKSPACE; db_import $LOOT_DIR/nmap/nmap*.xml; hosts; services; exit;" | tee $LOOT_DIR/notes/msf-$WORKSPACE.txt
+  fi
+  
   echo -e "$OKORANGE + -- --=[Generating reports...$RESET"
   cd ./output
+  echo -en "$OKGREEN[$OKBLUE"
   for a in `ls sniper-*.txt 2>/dev/null`;
+  #for a in `sort -u $LOOT_DIR/scans/updated.txt`;
   do
+    # TXT OUTPUT
+    #cat "$a" 2> /dev/null | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g" 2> /dev/null > $LOOT_DIR/reports/$a.txt 2> /dev/null 
     # HTML OUTPUT
-    cat "$a" | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g" > $LOOT_DIR/reports/$a.txt
-    echo "$a" | aha --black > $LOOT_DIR/reports/$a.html 2> /dev/null
-    cat "$a" | aha --black >> $LOOT_DIR/reports/$a.html 2> /dev/null
-    $INSTALL_DIR/bin/pyText2pdf.py -o $LOOT_DIR/reports/$a.pdf $LOOT_DIR/reports/$a.txt 2> /dev/null > /dev/null
+    echo "$a" 2> /dev/null | aha 2> /dev/null > $LOOT_DIR/reports/$a.html 2> /dev/null
+    cat "$a" 2> /dev/null | aha 2> /dev/null >> $LOOT_DIR/reports/$a.html 2> /dev/null
+    # PDF OUTPUT
+    #$INSTALL_DIR/bin/pyText2pdf.py -o $LOOT_DIR/reports/$a.pdf $LOOT_DIR/reports/$a.txt 2> /dev/null > /dev/null
+    echo -n '|'
   done
+  echo -en "$OKGREEN]$RESET"
+  echo ""
   cd ..
-
   echo -e "$OKORANGE + -- --=[Sorting all domains...$RESET"
+<<<<<<< HEAD
   touch $LOOT_DIR/domains/domains-all-sorted.txt 2> /dev/null
   sort -u $LOOT_DIR/domains/*.txt > $LOOT_DIR/domains/domains-all-sorted.txt 2> /dev/null
 
@@ -341,6 +454,41 @@ function loot {
   echo "</table></body></html>" >> $LOOT_DIR/sniper-report.html
   echo -e "$OKORANGE + -- --=[Opening workspace directory...$RESET"
   $BROWSER $LOOT_DIR/sniper-report.html 2> /dev/null > /dev/null &
+=======
+  #touch $LOOT_DIR/domains/domains-all-sorted.txt 2> /dev/null
+  sort -u $LOOT_DIR/domains/*-full.txt > $LOOT_DIR/domains/domains-all-presorted.txt 2> /dev/null
+  sed -E "s/^\.//g" $LOOT_DIR/domains/domains-all-presorted.txt | sed -E "s/^\*\.//g" |  tr '[:upper:]' '[:lower:]' | sort -u > $LOOT_DIR/domains/domains-all-presorted2.txt 2> /dev/null
+  sort -u $LOOT_DIR/domains/targets.txt > $LOOT_DIR/domains/targets-all-presorted.txt 2> /dev/null
+  sed -E "s/^\.//g" $LOOT_DIR/domains/targets-all-presorted.txt | sed -E "s/^\*\.//g" |  tr '[:upper:]' '[:lower:]' | sort -u > $LOOT_DIR/domains/targets-all-sorted.txt 2> /dev/null
+  sort -u $LOOT_DIR/ips/ips-all-unsorted.txt 2> /dev/null > $LOOT_DIR/ips/ips-all-sorted.txt 2> /dev/null
+  sed -i -E 's/address//g' $LOOT_DIR/ips/ips-all-sorted.txt 2> /dev/null
+  sort -u $LOOT_DIR/domains/domains-all-presorted2.txt $LOOT_DIR/domains/targets-all-sorted.txt 2> /dev/null > $LOOT_DIR/domains/domains-all-sorted.txt 2> /dev/null
+  diff $LOOT_DIR/domains/targets-all-sorted.txt $LOOT_DIR/domains/domains-all-sorted.txt | grep \> | awk '{print $2}' > $LOOT_DIR/domains/targets-all-unscanned.txt
+  echo -e "$OKORANGE + -- --=[Removing blank screenshots...$RESET"
+  cd $LOOT_DIR/screenshots/
+  find $LOOT_DIR/screenshots/ -type f -size -9000c -exec rm -f {} \;
+  cd $LOOT_DIR
+  if [ -f $SNIPER_PRO ]; then
+    if [ "$SN1PER_AUTOLOAD" = "1" ]; then
+      echo -e "$OKORANGE + -- --=[Loading Sn1per Professional...$RESET"
+      source $INSTALL_DIR/pro.sh
+      $BROWSER $LOOT_DIR/sniper-report.html 2> /dev/null > /dev/null &
+    else
+      echo -e "$OKORANGE + -- --=[Do you want to load Sn1per Professional (y or n)? $RESET"
+      read ANS
+      if [ "$ANS" == "y" ]; then
+        echo -e "$OKORANGE + -- --=[Loading Sn1per Professional...$RESET"
+        source $INSTALL_DIR/pro.sh
+        $BROWSER $LOOT_DIR/sniper-report.html 2> /dev/null > /dev/null &
+      else 
+        echo -e "$OKORANGE + -- --=[Skipping report generation. $RESET"
+      fi
+    fi
+  else
+    echo -e "$OKRED + -- --=[Sn1per Professional is not installed. To download Sn1per Professional, go to https://xerosecurity.com. $RESET"
+    $BROWSER https://xerosecurity.com 2> /dev/null > /dev/null &
+  fi
+>>>>>>> 3f4290619513f92a6c0903471e82cde83bd2443f
   echo -e "$OKORANGE + -- --=[Done!$RESET"
 }
 
@@ -351,9 +499,25 @@ if [ "$REIMPORT" = "1" ]; then
   fi
 fi
 
+if [ "$REIMPORT_ALL" = "1" ]; then
+  if [ ! -z "$WORKSPACE_DIR" ]; then
+    sort -u $WORKSPACE_DIR/domains/targets-all-sorted.txt $WORKSPACE_DIR/domains/domains-all-sorted.txt > $WORKSPACE_DIR/scans/updated.txt
+    loot
+    exit
+  fi
+fi
+
+if [ "$RELOAD" = "1" ]; then
+  if [ ! -z "$WORKSPACE_DIR" ]; then
+    $BROWSER $WORKSPACE_DIR/sniper-report.html 2> /dev/null > /dev/null &
+    exit
+  fi
+fi
+
 if [[ ${TARGET:0:1} =~ $REGEX ]];
 then
   SCAN_TYPE="IP"
+  
 else
   SCAN_TYPE="DOMAIN"
 fi
@@ -375,6 +539,7 @@ if grep -q BlackArch /etc/issue; then
   echo "Setting current path to $INSTALL_DIR"
 fi
 
+<<<<<<< HEAD
 if [ "$MODE" = "discover" ]; then
   if [ "$REPORT" = "1" ]; then
     sniper -t $TARGET -m $MODE --noreport | tee $LOOT_DIR/output/sniper-$MODE-`date +%Y%m%d%H%M`.txt 2>&1
@@ -2514,6 +2679,18 @@ echo -e "${OKGREEN}=============================================================
 if [ "$LOOT" = "1" ] && [ -z "$NOLOOT" ]; then
   loot
 fi
+=======
+source modes/discover.sh
+source modes/flyover.sh
+source modes/fullportonly.sh
+source modes/web.sh
+source modes/webporthttp.sh
+source modes/webporthttps.sh
+source modes/webscan.sh
+source modes/stealth.sh
+source modes/airstrike.sh
+source modes/nuke.sh
+source modes/normal.sh
+>>>>>>> 3f4290619513f92a6c0903471e82cde83bd2443f
 
 exit 0
-
